@@ -67,7 +67,7 @@ class Fighter/*: FighterProtocol*/ {
 
 // Протокол для навыков воина
 protocol WarriorProtocol {
-    func shieldBash()
+    func superAttack()
 }
 
 // Класс воина
@@ -76,18 +76,18 @@ class Warrior: Fighter, WarriorProtocol {
         super.init(name: name, type: "Воин", weapon: weapon, health: health, strength: strength)
     }
     
-    func shieldBash() {
-        print("\(name) использует прием Shield Bash!")
+    func superAttack() {
+        print("\(name) использует прием super attack")
     }
 }
 
 // Протокол для навыков мага
-protocol MageProtocol {
+protocol MagProtocol {
     func castSpell()
 }
 
 // Класс мага
-class Mage: Fighter, MageProtocol {
+class Mage: Fighter, MagProtocol {
     init(name: String, weapon: WeaponProtocol, health: Int, strength: Int) {
         super.init(name: name, type: "Маг", weapon: weapon, health: health, strength: strength)
     }
@@ -116,43 +116,23 @@ protocol AttackProtocol {
     func attack()
 }
 
-// Реализация на основе протоколов
-struct People: PeopleProtocol {
-    var person: Person
-    
-    init(person: Person) {
-        self.person = person
-    }
-    
-    func introduce() {
-        print("Меня зовут \(person.name) и мне \(person.age) лет.")
-    }
-}
+//struct People: PeopleProtocol {
+//    var person: Person
+//    
+//    init(person: Person) {
+//        self.person = person
+//    }
+//    
+//    func introduce() {
+//        print("Меня зовут \(person.name) и мне \(person.age) лет.")
+//    }
+//}
 
 //extension Fighter: AttackProtocol {
 //    func attack() {
 //        weapon.owner?.attack()
 //    }
     
-
-
-
-// Пример использования
-
-let sword = Weapon(name: "Меч")
-let warrior = Warrior(name: "Артур", weapon: sword, health: 100, strength: 20)
-warrior.attack() // Выведет: "Артур атакует с помощью Меча!"
-warrior.shieldBash() // Выведет: "Артур использует прием Shield Bash!"
-
-let staff = Weapon(name: "Посох")
-let mage = Mage(name: "Мерлин", weapon: staff, health: 80, strength: 15)
-mage.attack() // Выведет: "Мерлин атакует с помощью Посоха!"
-mage.castSpell() // Выведет: "Мерлин произносит заклинание!"
-
-let person = Person(name: "Иван", age: 30)
-let people = People(person: person)
-people.introduce() // Выведет: "Меня зовут Иван и мне 30 лет."
-
 
 func added<T: Numeric>(A: T, B: T) -> T{
     A+B
